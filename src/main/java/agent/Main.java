@@ -1,4 +1,4 @@
-package agentManager;
+package agent;
 
 import java.io.File;
 import java.io.IOException;

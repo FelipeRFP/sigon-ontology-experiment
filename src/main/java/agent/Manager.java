@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ontologyManager;
+package agent;
 
 
 import java.io.File;
@@ -43,8 +43,18 @@ import org.semanticweb.owlapi.reasoner.OWLReasoner;
 import org.semanticweb.owlapi.util.BidirectionalShortFormProvider;
 import org.semanticweb.owlapi.util.BidirectionalShortFormProviderAdapter;
 import org.semanticweb.owlapi.util.InferredAxiomGenerator;
+import org.semanticweb.owlapi.util.InferredClassAssertionAxiomGenerator;
+import org.semanticweb.owlapi.util.InferredDisjointClassesAxiomGenerator;
+import org.semanticweb.owlapi.util.InferredEquivalentClassAxiomGenerator;
+import org.semanticweb.owlapi.util.InferredEquivalentDataPropertiesAxiomGenerator;
+import org.semanticweb.owlapi.util.InferredEquivalentObjectPropertyAxiomGenerator;
+import org.semanticweb.owlapi.util.InferredInverseObjectPropertiesAxiomGenerator;
+import org.semanticweb.owlapi.util.InferredObjectPropertyCharacteristicAxiomGenerator;
 import org.semanticweb.owlapi.util.InferredOntologyGenerator;
 import org.semanticweb.owlapi.util.InferredPropertyAssertionGenerator;
+import org.semanticweb.owlapi.util.InferredSubClassAxiomGenerator;
+import org.semanticweb.owlapi.util.InferredSubDataPropertyAxiomGenerator;
+import org.semanticweb.owlapi.util.InferredSubObjectPropertyAxiomGenerator;
 import org.semanticweb.owlapi.util.OWLOntologyMerger;
 import org.semanticweb.owlapi.util.ShortFormProvider;
 import org.semanticweb.owlapi.util.SimpleShortFormProvider;
@@ -55,7 +65,7 @@ import org.semanticweb.owlapi.util.SimpleShortFormProvider;
     //     Raciocinar sobre; (Caso Assertion na etapa passada)
     //     Salvar; @
 
-public class Prototype {
+public class Manager {
     
     public OWLOntologyManager man;
     public OWLDataFactory owlDf;
@@ -63,7 +73,7 @@ public class Prototype {
     public IRI defaultIRI;
     public OWLReasoner reasoner;
 
-    public Prototype() {
+    public Manager() {
         this.man = OWLManager.createOWLOntologyManager();
         this.owlDf = this.man.getOWLDataFactory();
     }
@@ -93,7 +103,7 @@ public class Prototype {
         this.loadedOntology = null;
     }
     
-    public void ontologyAssert(String prologCommands) throws Exception{
+    public void ontologyAssert(String prologCommands) {
         /*
         Types of assertion made by a Agent:
         Individual Assertion;
@@ -249,21 +259,40 @@ public class Prototype {
         
         
         List<InferredAxiomGenerator<? extends OWLAxiom>> gens = new ArrayList<>();
-        //gens.add(new InferredSubClassAxiomGenerator());  
-        //gens.add(new InferredClassAssertionAxiomGenerator()); // Infers subclasses 
-        //gens.add(new InferredDisjointClassesAxiomGenerator());
-        //gens.add(new InferredEquivalentClassAxiomGenerator());
-        //gens.add(new InferredEquivalentDataPropertiesAxiomGenerator());
-        //gens.add(new InferredEquivalentObjectPropertyAxiomGenerator());
-        //gens.add(new InferredInverseObjectPropertiesAxiomGenerator());
-        //gens.add(new InferredObjectPropertyCharacteristicAxiomGenerator());
+        gens.add(new InferredSubClassAxiomGenerator());  
+        gens.add(new InferredClassAssertionAxiomGenerator()); // Infers subclasses 
+        gens.add(new InferredDisjointClassesAxiomGenerator());
+        gens.add(new InferredEquivalentClassAxiomGenerator());
+        gens.add(new InferredEquivalentDataPropertiesAxiomGenerator());
+        gens.add(new InferredEquivalentObjectPropertyAxiomGenerator());
+        gens.add(new InferredInverseObjectPropertiesAxiomGenerator());
+        gens.add(new InferredObjectPropertyCharacteristicAxiomGenerator());
         gens.add(new InferredPropertyAssertionGenerator());
-        //gens.add(new InferredSubDataPropertyAxiomGenerator());
-        //gens.add(new InferredSubObjectPropertyAxiomGenerator());
+        gens.add(new InferredSubDataPropertyAxiomGenerator());
+        gens.add(new InferredSubObjectPropertyAxiomGenerator());
 
          InferredOntologyGenerator iog = new InferredOntologyGenerator(this.reasoner, gens);
          iog.fillOntology(this.owlDf, this.loadedOntology);
+         
+         
     }
+    
+    protected void getRelevantAssertions(InferredOntologyGenerator iog) {
+    	
+    	IRI IOR = IRI.create("http://www.example.com/temporyOntology");
+    	OWLOntology temporaryOntology = null;
+    	try {
+			temporaryOntology = this.man.createOntology(IOR);
+		} catch (OWLOntologyCreationException e) {
+			e.printStackTrace();
+		}
+    	
+    	if(temporaryOntology != null)
+    		iog.fillOntology(owlDf, temporaryOntology);
+    	
+    }
+    
+    
     
     public String ontologyQuery(String classExpressionString){
         

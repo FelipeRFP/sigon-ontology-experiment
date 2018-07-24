@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ontologyManager;
+package agent;
 
 import java.util.Scanner;
         
@@ -12,7 +12,7 @@ public class TestPrototype {
     public static void main(String args[]) throws Exception{
         
         Scanner scanner = new Scanner(System.in);
-        Prototype proto = new Prototype();
+        Manager proto = new Manager();
         
         try{
             proto.loadOntology("/home/felipe/Desktop/ExampleOntology.txt"); } 
