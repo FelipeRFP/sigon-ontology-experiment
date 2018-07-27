@@ -5,7 +5,6 @@
  */
 package agent;
 
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -44,35 +43,30 @@ import org.semanticweb.owlapi.util.BidirectionalShortFormProvider;
 import org.semanticweb.owlapi.util.BidirectionalShortFormProviderAdapter;
 import org.semanticweb.owlapi.util.InferredAxiomGenerator;
 import org.semanticweb.owlapi.util.InferredClassAssertionAxiomGenerator;
-import org.semanticweb.owlapi.util.InferredDisjointClassesAxiomGenerator;
-import org.semanticweb.owlapi.util.InferredEquivalentClassAxiomGenerator;
-import org.semanticweb.owlapi.util.InferredEquivalentDataPropertiesAxiomGenerator;
-import org.semanticweb.owlapi.util.InferredEquivalentObjectPropertyAxiomGenerator;
-import org.semanticweb.owlapi.util.InferredInverseObjectPropertiesAxiomGenerator;
 import org.semanticweb.owlapi.util.InferredObjectPropertyCharacteristicAxiomGenerator;
 import org.semanticweb.owlapi.util.InferredOntologyGenerator;
 import org.semanticweb.owlapi.util.InferredPropertyAssertionGenerator;
-import org.semanticweb.owlapi.util.InferredSubClassAxiomGenerator;
 import org.semanticweb.owlapi.util.InferredSubDataPropertyAxiomGenerator;
-import org.semanticweb.owlapi.util.InferredSubObjectPropertyAxiomGenerator;
-import org.semanticweb.owlapi.util.OWLOntologyMerger;
 import org.semanticweb.owlapi.util.ShortFormProvider;
 import org.semanticweb.owlapi.util.SimpleShortFormProvider;
 
     // Para cada Interação:
-    //     Abrir a onotologia; @
+    //     Abrir a onotologia; 
     //     Realizar operação; (Query ou Assertion)
     //     Raciocinar sobre; (Caso Assertion na etapa passada)
-    //     Salvar; @
+    //     Salvar; 
 
 public class Manager {
     
-    public OWLOntologyManager man;
-    public OWLDataFactory owlDf;
-    public OWLOntology loadedOntology;
-    public IRI defaultIRI;
-    public OWLReasoner reasoner;
-
+	public IRI defaultIRI;
+	protected OWLReasoner reasoner;
+	protected OWLDataFactory owlDf;
+	protected OWLOntologyManager man;
+	protected OWLOntology loadedOntology;
+    
+    protected String[] axioms = null;
+    
+    
     public Manager() {
         this.man = OWLManager.createOWLOntologyManager();
         this.owlDf = this.man.getOWLDataFactory();
@@ -88,7 +82,7 @@ public class Manager {
     }
     
     public void createOntology() throws OWLOntologyCreationException {
-    	IRI IOR = IRI.create("http://www.example.com/FelipeOntology");
+    	IRI IOR = IRI.create("http://www.example.com/sigonOntology");
     	this.loadedOntology = this.man.createOntology(IOR);
         this.defaultIRI = this.man.getOntologyDocumentIRI(loadedOntology);
         this.reasoner = new ReasonerFactory().createReasoner(loadedOntology);
@@ -253,44 +247,106 @@ public class Manager {
     }
 
     public void reason(){
-        this.reasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
-        
-        OWLOntologyMerger merger = new OWLOntologyMerger(this.man);
-        
+        //this.reasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
+        this.reasoner.precomputeInferences(InferenceType.OBJECT_PROPERTY_ASSERTIONS); 
+        this.reasoner.precomputeInferences(InferenceType.DIFFERENT_INDIVIDUALS);
         
         List<InferredAxiomGenerator<? extends OWLAxiom>> gens = new ArrayList<>();
-        gens.add(new InferredSubClassAxiomGenerator());  
-        gens.add(new InferredClassAssertionAxiomGenerator()); // Infers subclasses 
-        gens.add(new InferredDisjointClassesAxiomGenerator());
-        gens.add(new InferredEquivalentClassAxiomGenerator());
-        gens.add(new InferredEquivalentDataPropertiesAxiomGenerator());
-        gens.add(new InferredEquivalentObjectPropertyAxiomGenerator());
-        gens.add(new InferredInverseObjectPropertiesAxiomGenerator());
-        gens.add(new InferredObjectPropertyCharacteristicAxiomGenerator());
+        // gens.add(new InferredSubClassAxiomGenerator());  
+        // gens.add(new InferredDisjointClassesAxiomGenerator());
+        // gens.add(new InferredEquivalentClassAxiomGenerator());
+        // gens.add(new InferredEquivalentDataPropertiesAxiomGenerator());
+        // gens.add(new InferredEquivalentObjectPropertyAxiomGenerator());
+        // gens.add(new InferredInverseObjectPropertiesAxiomGenerator());
+        // gens.add(new InferredSubObjectPropertyAxiomGenerator());
+        // gens.add(new InferredSubDataPropertyAxiomGenerator());
+        gens.add(new InferredClassAssertionAxiomGenerator());
         gens.add(new InferredPropertyAssertionGenerator());
-        gens.add(new InferredSubDataPropertyAxiomGenerator());
-        gens.add(new InferredSubObjectPropertyAxiomGenerator());
-
-         InferredOntologyGenerator iog = new InferredOntologyGenerator(this.reasoner, gens);
-         iog.fillOntology(this.owlDf, this.loadedOntology);
-         
-         
+        gens.add(new InferredObjectPropertyCharacteristicAxiomGenerator());
+        
+        
+        InferredOntologyGenerator iog = new InferredOntologyGenerator(this.reasoner, gens);
+        iog.fillOntology(this.owlDf, this.loadedOntology); 
+        
+        saveAxiomStrings();
+        axiomsToLogicTerms();
     }
     
-    protected void getRelevantAssertions(InferredOntologyGenerator iog) {
-    	
-    	IRI IOR = IRI.create("http://www.example.com/temporyOntology");
-    	OWLOntology temporaryOntology = null;
-    	try {
-			temporaryOntology = this.man.createOntology(IOR);
-		} catch (OWLOntologyCreationException e) {
-			e.printStackTrace();
-		}
-    	
-    	if(temporaryOntology != null)
-    		iog.fillOntology(owlDf, temporaryOntology);
-    	
+    protected void saveAxiomStrings() {
+    	ArrayList<String> axiomList = new ArrayList<String>();
+    	this.loadedOntology.logicalAxioms().forEach(s -> axiomList.add(s.toString()));
+    	this.loadedOntology.logicalAxioms().forEach(System.out::println);
+    	this.axioms = axiomList.toArray(new String[axiomList.size()]);
     }
+    
+    protected String[] axiomsToLogicTerms() {
+    	ArrayList<String> newAxiomList = new ArrayList<String>();
+    	
+    	String logicAxiom = null;
+    	
+    	for(String axiom: this.axioms) {
+    		
+    		axiom = axiom.substring(0, (axiom.length() - 2)) + ")";
+    		axiom = axiom.replaceAll("<urn:default:baseUri:#", "");
+    		axiom = axiom.replaceAll(">", ",");
+    		
+    		System.out.println(axiom);
+    		
+    		if(axiom.startsWith("ObjectPropertyAssertion"))
+    			logicAxiom = parseToLogicObjectPropertyAssertion(axiom);
+
+    		else if(axiom.startsWith("ClassAssertion"))
+    			logicAxiom = parseToLogicClassAssertion(axiom);
+    		
+    		else if(axiom.startsWith("DataPropertyAssertion"))
+    			logicAxiom = parseToLogicDataPropertyAssertion(axiom);
+    		
+    		 newAxiomList.add(logicAxiom);
+    		 logicAxiom = null;
+    		 
+    	}
+    	return null;
+    }
+    
+    protected String parseToLogicDataPropertyAssertion(String axiom){
+    	axiom.replaceFirst("ObjectPropertyAssertion", "");
+    	axiom.replaceAll("[\\(\\)]", "");
+    	String[] terms = axiom.split(",");
+    	
+    	return terms[0].trim() + "(" + terms[1].trim() + ", " + terms[2].trim() + ").";
+    }
+    
+    protected String parseToLogicClassAssertion(String axiom){
+    	
+    	if(axiom.contains("owl:Thing")) {
+    		axiom.replace("owl:Thing ", "");
+    		axiom.replace("ClassAssertion", "exists");
+    		return axiom;
+    	}
+    	
+    	
+    	
+    	return null;
+    }
+    
+    protected String parseToLogicObjectPropertyAssertion(String axiom){
+    	
+    	return null;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
