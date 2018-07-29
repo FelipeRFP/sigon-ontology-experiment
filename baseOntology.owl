@@ -1,4 +1,4 @@
-Prefix(:=<urn:default:baseUri:#>)
+Prefix(:=<http://www.example.com/sigonOntology#>)
 Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
 Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
 Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
@@ -8,91 +8,35 @@ Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
 
 Ontology(<http://www.example.com/sigonOntology>
 
-Declaration(Class(:Aquos))
-Declaration(Class(:Ignis))
-Declaration(ObjectProperty(:four))
-Declaration(ObjectProperty(:one))
-Declaration(ObjectProperty(:three))
-Declaration(ObjectProperty(:two))
-Declaration(NamedIndividual(:alpha))
-Declaration(NamedIndividual(:beta))
-Declaration(NamedIndividual(:delta))
-Declaration(NamedIndividual(:epsilon))
-Declaration(NamedIndividual(:gamma))
-Declaration(NamedIndividual(:omega))
-Declaration(NamedIndividual(:omicron))
-############################
-#   Object Properties
-############################
-
-# Object Property: :four (:four)
-
-ReflexiveObjectProperty(:four)
-
-# Object Property: :one (:one)
-
-ObjectPropertyDomain(:one :Ignis)
-ObjectPropertyRange(:one :Aquos)
-
-# Object Property: :three (:three)
-
-TransitiveObjectProperty(:three)
-
-# Object Property: :two (:two)
-
-FunctionalObjectProperty(:two)
-
+Declaration(ObjectProperty(:hates))
+Declaration(ObjectProperty(:loves))
+Declaration(NamedIndividual(:bean))
+Declaration(NamedIndividual(:jack))
+Declaration(NamedIndividual(:jhon))
+Declaration(NamedIndividual(:paul))
 
 
 ############################
 #   Named Individuals
 ############################
 
-# Individual: :alpha (:alpha)
+# Individual: :bean (:bean)
 
-ClassAssertion(owl:Thing :alpha)
-ClassAssertion(:Ignis :alpha)
-ObjectPropertyAssertion(:four :alpha :alpha)
-ObjectPropertyAssertion(:one :alpha :beta)
-ObjectPropertyAssertion(:three :alpha :beta)
-ObjectPropertyAssertion(:three :alpha :delta)
+ClassAssertion(owl:Thing :bean)
 
-# Individual: :beta (:beta)
+# Individual: :jack (:jack)
 
-ClassAssertion(owl:Thing :beta)
-ClassAssertion(:Aquos :beta)
-ObjectPropertyAssertion(:four :beta :beta)
-ObjectPropertyAssertion(:three :beta :delta)
+ClassAssertion(owl:Thing :jack)
+ObjectPropertyAssertion(:hates :jack :bean)
 
-# Individual: :delta (:delta)
+# Individual: :jhon (:jhon)
 
-ClassAssertion(owl:Thing :delta)
-ObjectPropertyAssertion(:four :delta :delta)
-ObjectPropertyAssertion(:four :delta :epsilon)
+ClassAssertion(owl:Thing :jhon)
+ObjectPropertyAssertion(:loves :jhon :paul)
 
-# Individual: :epsilon (:epsilon)
+# Individual: :paul (:paul)
 
-ClassAssertion(owl:Thing :epsilon)
-ObjectPropertyAssertion(:four :epsilon :epsilon)
-
-# Individual: :gamma (:gamma)
-
-ClassAssertion(owl:Thing :gamma)
-ObjectPropertyAssertion(:four :gamma :gamma)
-ObjectPropertyAssertion(:two :gamma :omega)
-ObjectPropertyAssertion(:two :gamma :omicron)
-
-# Individual: :omega (:omega)
-
-ClassAssertion(owl:Thing :omega)
-ObjectPropertyAssertion(:four :omega :omega)
-ObjectPropertyAssertion(:four :omega :omicron)
-
-# Individual: :omicron (:omicron)
-
-ClassAssertion(owl:Thing :omicron)
-ObjectPropertyAssertion(:four :omicron :omega)
-ObjectPropertyAssertion(:four :omicron :omicron)
+ClassAssertion(owl:Thing :paul)
 
 
 )
