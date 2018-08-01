@@ -25,7 +25,7 @@ public class Main {
 			Scanner scanIn = new Scanner(System.in);
 			String inputString = scanIn.nextLine();
 			if (!inputString.isEmpty());
-				// r5.Inbox.envObservable.onNext(inputString);
+				Hear.envObservable.onNext(inputString);
 		}
 	}
 	

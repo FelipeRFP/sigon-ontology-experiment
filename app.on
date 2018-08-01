@@ -1,1 +1,15 @@
-a
+communication:
+	sensor("hear", "agent.Hear").
+	sensor("speak", "agent.Speak").
+	
+beliefs:
+	number(7,6).
+
+
+desires:
+	alfa(fa).
+
+intentions:
+
+planner:
+	plan(alfa(fa), [action(speak(number), number(7), number(7))], number(7,6), number(7,6)).

@@ -75,8 +75,7 @@ public class Manager {
     public void loadOntology(String filePath) throws OWLOntologyCreationException{
         File file = new File(filePath);
         this.loadedOntology = this.man.loadOntologyFromOntologyDocument(file);
-        System.out.println(this.loadedOntology.getOntologyID().getOntologyIRI());
-        this.defaultIRI = IRI.create("http://www.example.com/sigonOntology");
+        this.defaultIRI = this.man.getOntologyDocumentIRI(loadedOntology);
         this.reasoner = new ReasonerFactory().createReasoner(loadedOntology);
         
         System.out.println(this.loadedOntology);
@@ -110,7 +109,7 @@ public class Manager {
         
         Individual Class Assertion: isA(class, individual).
         
-        Individual Data Property Assertion format; dataProperty(marcador, data).
+        Individual Data Property Assertion format; dataProperty(marcador, data). ou  dataProperty(marcador, nbrdata)
         
         Individual Property Assertion format; property(marcador1,marcador2).
         
@@ -171,11 +170,14 @@ public class Manager {
             propertyName = propertyName.replaceFirst("data", "");
             
             //Creates a pattern to regognize if the identifier is actually number.
-            pattern = Pattern.compile("[0-9\\.]+");
+            //Which will be denoted by the "nbr" tag added in front of the value.
+            pattern = Pattern.compile("nbr[0-9\\.]+");
             matcher = pattern.matcher(identifiers.get(2));
             
+            //Tests for "nbr" tag.
             if(matcher.find()){
                 String number =  identifiers.get(2);
+                number = number.replaceFirst("nbr", "");
                 
                 //Creates a patter to test if the number is a real or interger.
                 pattern = Pattern.compile("\\.");
@@ -278,19 +280,13 @@ public class Manager {
     }
     
     protected String[] axiomsToLogicTerms() {
+    	
+    	System.out.println("----------------");
     	ArrayList<String> newAxiomList = new ArrayList<String>();
     	
     	String logicAxiom = null;
     	
-    	for(String axiom: this.axioms) {
-    		
-    		axiom = axiom.substring(0, (axiom.length() - 2)) + ")";
-    		axiom = axiom.replaceAll("<urn:default:baseUri:#", "");
-    		axiom = axiom.replaceAll("<http://www.example.com/sigonOntology#", "");
-    		axiom = axiom.replaceAll(">", ",");
-    		
-    		System.out.println(axiom);
-    		
+    	for(String axiom: this.axioms) {	
     		if(axiom.startsWith("ObjectPropertyAssertion"))
     			logicAxiom = parseToLogicObjectPropertyAssertion(axiom);
 
@@ -300,44 +296,74 @@ public class Manager {
     		else if(axiom.startsWith("DataPropertyAssertion"))
     			logicAxiom = parseToLogicDataPropertyAssertion(axiom);
     		
-    		 newAxiomList.add(logicAxiom);
+    		if(logicAxiom != null)
+    			newAxiomList.add(logicAxiom);
+    		
     		 logicAxiom = null;
     		 
     	}
-    	return null;
+    	
+    	newAxiomList.forEach(System.out::println);
+    	
+    	return newAxiomList.toArray(new String[newAxiomList.size()]);
+    	
+    	
     }
     
     protected String parseToLogicDataPropertyAssertion(String axiom){
-    	axiom.replaceFirst("ObjectPropertyAssertion", "");
-    	axiom.replaceAll("[\\(\\)]", "");
-    	String[] terms = axiom.split(",");
+    	Pattern pattern = Pattern.compile("#[a-z_A-Z0-9]+");
+        Matcher matcher = pattern.matcher(axiom);
+        
+        ArrayList<String> terms = new ArrayList<>();
     	
-    	return terms[0].trim() + "(" + terms[1].trim() + ", " + terms[2].trim() + ").";
+    	while(matcher.find())
+    		 terms.add(matcher.group().replaceAll("#", ""));
+    	
+    	return terms.get(0) + "(" + terms.get(1) + ", " + terms.get(2) + ").";
     }
     
     protected String parseToLogicClassAssertion(String axiom){
-    	if(axiom.contains("owl:Thing")) {
-    		axiom.replace("owl:Thing ", "");
-    		axiom.replace("ClassAssertion", "exists");
-    		axiom = axiom + ".";
-    		return axiom;
-    	}
+    	if(axiom.contains("owl:Thing")) 
+    		return parseToLogicExistsAxiom(axiom);
     	
-    	axiom.replace("ClassAssertion(", "");
-    	axiom.replace(")", "");
+    	Pattern pattern = Pattern.compile("#[a-z_A-Z0-9]+");
+        Matcher matcher = pattern.matcher(axiom);
+        
+        ArrayList<String> terms = new ArrayList<>();
     	
-    	String[] terms = axiom.split(",");
+    	while(matcher.find())
+    		 terms.add(matcher.group().replaceAll("#", ""));
     	
-    	return "isA(" + terms[1].trim() + ", " +  terms[0].trim() + ").";
+    	return "isA(" + terms.get(1)+ ", " + terms.get(0) + ").";
+    	
+    }
+    
+    protected String parseToLogicExistsAxiom(String axiom) {
+    	Pattern pattern = Pattern.compile("#[a-z_A-Z0-9]+");
+        Matcher matcher = pattern.matcher(axiom);
+        
+        ArrayList<String> terms = new ArrayList<>();
+        
+    	while(matcher.find())
+    		 terms.add(matcher.group().replaceAll("#", ""));
+    	
+    	return "exists(" + terms.get(0) + ").";
     }
     
     protected String parseToLogicObjectPropertyAssertion(String axiom){
+    	Pattern pattern = Pattern.compile("#[a-z_A-Z0-9]+");
+        Matcher matcher = pattern.matcher(axiom);
+        
+        ArrayList<String> terms = new ArrayList<>();
     	
-    	return null;
+    	while(matcher.find())
+    		 terms.add(matcher.group().replaceAll("#", ""));
+    	
+    	return terms.get(0) + "(" + terms.get(1) + ", " + terms.get(2) + ").";
     }
     
     
-    
+
     
     
     
