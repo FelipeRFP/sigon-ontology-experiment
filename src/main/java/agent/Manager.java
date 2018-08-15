@@ -66,8 +66,11 @@ public class Manager {
     
     protected String[] axioms = null;
     
-    
-    public Manager() {
+    public String[] getAxioms() {
+		return axioms;
+	}
+
+	public Manager() {
         this.man = OWLManager.createOWLOntologyManager();
         this.owlDf = this.man.getOWLDataFactory();
     }
@@ -269,19 +272,19 @@ public class Manager {
         iog.fillOntology(this.owlDf, this.loadedOntology); 
         
         saveAxiomStrings();
-        axiomsToLogicTerms();
+        this.axioms  = axiomsToLogicTerms();
     }
     
     protected void saveAxiomStrings() {
     	ArrayList<String> axiomList = new ArrayList<String>();
     	this.loadedOntology.logicalAxioms().forEach(s -> axiomList.add(s.toString()));
-    	this.loadedOntology.logicalAxioms().forEach(System.out::println);
+    	//this.loadedOntology.logicalAxioms().forEach(System.out::println);
     	this.axioms = axiomList.toArray(new String[axiomList.size()]);
     }
     
     protected String[] axiomsToLogicTerms() {
     	
-    	System.out.println("----------------");
+    	//System.out.println("----------------");
     	ArrayList<String> newAxiomList = new ArrayList<String>();
     	
     	String logicAxiom = null;
@@ -303,7 +306,7 @@ public class Manager {
     		 
     	}
     	
-    	newAxiomList.forEach(System.out::println);
+    	// newAxiomList.forEach(System.out::println);
     	
     	return newAxiomList.toArray(new String[newAxiomList.size()]);
     	

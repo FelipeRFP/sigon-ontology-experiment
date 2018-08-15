@@ -2,14 +2,34 @@ communication:
 	sensor("hear", "agent.Hear").
 	sensor("speak", "agent.Speak").
 	
+communication:
+	! _semantics X :- communication sense(X).
+	! desires safe(X) :- isA(X, lemming).
+	
+	
 beliefs:
-	number(7,6).
+
+
+_semantics:
 
 
 desires:
-	alfa(fa).
+	traffic(flowing).
+	
 
 intentions:
 
+
 planner:
-	plan(alfa(fa), [action(speak(number), number(7), number(7))], number(7,6), number(7,6)).
+	plan(safe(X),
+		[action(speak(), exists(X), exists(X))], 
+		[isA(X, lemming), isA(Y, car), isOn(X, PATH1), isOn(Y, PATH2), intersects(PATH1, PATH2)],
+		[safe(X), traffic(stopped)]).
+		
+		plan(traffic(flowing),
+		[action(speak(), exists(X), exists(X))], 
+		[isA(X, lemming), isA(Y, car), isOn(X, PATH1), isOn(Y, PATH2), not intersects(PATH1, PATH2)],
+		safe(X)).
+
+		
+		

@@ -10,8 +10,6 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
-import agent.AgentLexer;
-import agent.AgentParser;
 import br.ufsc.ine.agent.Agent;
 import br.ufsc.ine.parser.AgentWalker;
 import br.ufsc.ine.parser.VerboseListener;
@@ -47,14 +45,14 @@ public class Main {
 			walker.walk(agentWalker, tree);
 
 			Agent agent = new Agent();
-			agent.run(agentWalker);
+			agent.run(agentWalker, null);
 
 
 		} catch (IOException e) {
 			System.out.println("I/O exception.");
 		}
 	}
-	
+			
 	
 
 
