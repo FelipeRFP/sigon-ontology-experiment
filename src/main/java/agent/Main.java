@@ -11,12 +11,15 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 import br.ufsc.ine.agent.Agent;
+import br.ufsc.ine.agent.context.custom.CustomContext;
 import br.ufsc.ine.parser.AgentWalker;
 import br.ufsc.ine.parser.VerboseListener;
 
 public class Main {	
 	public static void main(String[] args) {
-		startAgent("app.on");
+		CustomContext[] contexts = new CustomContext[1];
+		contexts[0] = new SemanticsContextService();
+		startAgent("app.on", contexts);
 		
 		while (true) {
 			@SuppressWarnings("resource")
@@ -27,7 +30,7 @@ public class Main {
 		}
 	}
 	
-	public static void startAgent(String filePath) {
+	public static void startAgent(String filePath, CustomContext[] contexts) {
 		try {
 			File agentFile = new File(filePath);
 			CharStream stream = CharStreams.fromFileName(agentFile.getAbsolutePath());
@@ -45,7 +48,7 @@ public class Main {
 			walker.walk(agentWalker, tree);
 
 			Agent agent = new Agent();
-			agent.run(agentWalker, null);
+			agent.run(agentWalker, contexts);
 
 
 		} catch (IOException e) {

@@ -137,7 +137,7 @@ public class Manager {
         
         // Debug Print
         for(String word: identifiers)
-            System.out.println(word);
+        //    System.out.println(word);
         
         
         //-----------------------------------
@@ -209,7 +209,7 @@ public class Manager {
     protected void assertExists(String individualId){
         OWLNamedIndividual newIndividual = this.owlDf.getOWLNamedIndividual(this.defaultIRI + "#" + individualId);
         OWLDeclarationAxiom da = this.owlDf.getOWLDeclarationAxiom(newIndividual);
-        System.out.println(da);
+        //System.out.println(da);
         this.loadedOntology.add(da);
     }
     
@@ -451,7 +451,7 @@ public class Manager {
                 .getOWLDataFactory();
         ManchesterOWLSyntaxEditorParser parser = new ManchesterOWLSyntaxEditorParser(
                 dataFactory, classExpressionString);
-        System.out.println(parser);
+        //System.out.println(parser);
 
         parser.setDefaultOntology(rootOntology);
         OWLEntityChecker entityChecker = new ShortFormEntityChecker(bidiShortFormProvider);
