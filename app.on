@@ -1,35 +1,27 @@
 communication:
 	sensor("hear", "agent.Hear").
-	sensor("speak", "agent.Speak").
-	
-communication:
-	! _semantics X :- communication sense(X).
-	! desires safe(X) :- isA(X, lemming).
-	
+	actuator("speak", "agent.Speak").
 	
 beliefs:
-
+	trafficLight.
 
 _semantics:
 
 
 desires:
-	traffic(flowing).
+	trafficLight.
 	
-
 intentions:
 
 
 planner:
-	plan(safe(X),
-		[action(speak(), exists(X), exists(X))], 
-		[isA(X, lemming), isA(Y, car), isOn(X, PATH1), isOn(Y, PATH2), intersects(PATH1, PATH2)],
-		[safe(X), traffic(stopped)]).
-		
-		plan(traffic(flowing),
-		[action(speak(), exists(X), exists(X))], 
-		[isA(X, lemming), isA(Y, car), isOn(X, PATH1), isOn(Y, PATH2), not intersects(PATH1, PATH2)],
-		safe(X)).
-
+	
+	plan(safe(Lemming), [action(speak(), trafficLigh(green), trafficLight(Red))], 
+		[isOn(Lemming, crossWalkB), isA(Lemming, lemming), isA(Car, car), isOn(Car, streetA)], 
+		trafficLight(red)).
+			
+	plan(trafficLight(green), [action(speak(), trafficLight(red), trafficLight(green))],
+		[trafficLight(red),  not isOn(Lemming, lemmingPathCEFE), isA(Lemming, lemming)],
+		trafficLight(green)).
 		
 		
