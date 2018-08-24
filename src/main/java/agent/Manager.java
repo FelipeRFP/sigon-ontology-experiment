@@ -303,7 +303,7 @@ public class Manager {
     	String logicAxiom = null;
     	
     	for(String axiom: this.axioms) {	
-    		if(axiom.startsWith("ObjectPropertyAssertion"))
+    		if(axiom.startsWith("ObjectPropertyAssertion") & !axiom.contains("owl:topObjectProperty"))
     			logicAxiom = parseToLogicObjectPropertyAssertion(axiom);
 
     		else if(axiom.startsWith("ClassAssertion"))
@@ -374,7 +374,6 @@ public class Manager {
     	
     	while(matcher.find())
     		 terms.add(matcher.group().replaceAll("#", ""));
-    	
     	return terms.get(0) + "(" + terms.get(1) + ", " + terms.get(2) + ").";
     }
     
