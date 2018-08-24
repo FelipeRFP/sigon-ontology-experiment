@@ -51,7 +51,7 @@ import org.semanticweb.owlapi.util.ShortFormProvider;
 import org.semanticweb.owlapi.util.SimpleShortFormProvider;
 
     // Para cada Interação:
-    //     Abrir a onotologia; 
+    //     Abrir a ontologia; 
     //     Realizar operação; (Query ou Assertion)
     //     Raciocinar sobre; (Caso Assertion na etapa passada)
     //     Salvar; 
@@ -78,8 +78,8 @@ public class Manager {
     public void loadOntology(String filePath) throws OWLOntologyCreationException{
         File file = new File(filePath);
         this.loadedOntology = this.man.loadOntologyFromOntologyDocument(file);
-        this.defaultIRI = this.man.getOntologyDocumentIRI(loadedOntology);
-        this.reasoner = new ReasonerFactory().createReasoner(loadedOntology);
+        //this.defaultIRI = this.man.getOntologyDocumentIRI(loadedOntology);
+        this.defaultIRI = IRI.create("http://www.example.com/sigonOntology");
         
         System.out.println(this.loadedOntology);
     }
@@ -98,6 +98,18 @@ public class Manager {
         File fileout = new File(filePath);
         this.man.saveOntology(this.loadedOntology, new FunctionalSyntaxDocumentFormat(), new FileOutputStream(fileout));
         this.loadedOntology = null;
+    }
+    
+    public void finalize() {
+    	try {
+			this.saveOntology("baseOntology.owl");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (OWLOntologyStorageException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
     
     public void ontologyAssert(String prologCommands) {
@@ -136,7 +148,7 @@ public class Manager {
         
         
         // Debug Print
-        for(String word: identifiers)
+        //for(String word: identifiers)
         //    System.out.println(word);
         
         
@@ -250,6 +262,7 @@ public class Manager {
     }
 
     public void reason(){
+        this.reasoner = new ReasonerFactory().createReasoner(loadedOntology);
         //this.reasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
         this.reasoner.precomputeInferences(InferenceType.OBJECT_PROPERTY_ASSERTIONS); 
         this.reasoner.precomputeInferences(InferenceType.DIFFERENT_INDIVIDUALS);

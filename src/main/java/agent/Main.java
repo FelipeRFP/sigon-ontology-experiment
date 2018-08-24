@@ -25,6 +25,8 @@ public class Main {
 			@SuppressWarnings("resource")
 			Scanner scanIn = new Scanner(System.in);
 			String inputString = scanIn.nextLine();
+			if(inputString.trim().equals("exit"))
+				
 			if (!inputString.isEmpty());
 				Hear.envObservable.onNext(inputString);
 		}

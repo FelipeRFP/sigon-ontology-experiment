@@ -1,9 +1,11 @@
 package agent;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
+import org.semanticweb.owlapi.model.OWLOntologyStorageException;
 
 import alice.tuprolog.InvalidTheoryException;
 import br.ufsc.ine.agent.bridgerules.Body;
@@ -21,7 +23,7 @@ public class SemanticsContextService extends CustomContext{
 	public SemanticsContextService() {
 		super("semantics");
 		try {
-			ontology.createOntology();
+			ontology.loadOntology("baseOntology.owl");
 		} catch (OWLOntologyCreationException e) {
 			
 		}
@@ -64,6 +66,9 @@ public class SemanticsContextService extends CustomContext{
         } catch (InvalidTheoryException e) {
             e.printStackTrace();
         }
-    }
-	
+      
+	}
+        
 }
+	
+
