@@ -24,6 +24,7 @@ public class SemanticsContextService extends CustomContext{
 		super("semantics");
 		try {
 			ontology.loadOntology("baseOntology.owl");
+			ontology.reason();
 		} catch (OWLOntologyCreationException e) {
 			
 		}

@@ -46,7 +46,6 @@ import org.semanticweb.owlapi.util.InferredClassAssertionAxiomGenerator;
 import org.semanticweb.owlapi.util.InferredObjectPropertyCharacteristicAxiomGenerator;
 import org.semanticweb.owlapi.util.InferredOntologyGenerator;
 import org.semanticweb.owlapi.util.InferredPropertyAssertionGenerator;
-import org.semanticweb.owlapi.util.InferredSubDataPropertyAxiomGenerator;
 import org.semanticweb.owlapi.util.ShortFormProvider;
 import org.semanticweb.owlapi.util.SimpleShortFormProvider;
 
@@ -65,6 +64,7 @@ public class Manager {
 	protected OWLOntology loadedOntology;
     
     protected String[] axioms = null;
+    protected List<String> lemmings = new ArrayList<>();
     
     public String[] getAxioms() {
 		return axioms;
@@ -98,18 +98,6 @@ public class Manager {
         File fileout = new File(filePath);
         this.man.saveOntology(this.loadedOntology, new FunctionalSyntaxDocumentFormat(), new FileOutputStream(fileout));
         this.loadedOntology = null;
-    }
-    
-    public void finalize() {
-    	try {
-			this.saveOntology("baseOntology.owl");
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (OWLOntologyStorageException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
     }
     
     public void ontologyAssert(String prologCommands) {
@@ -230,6 +218,9 @@ public class Manager {
             OWLNamedIndividual newIndividual = this.owlDf.getOWLNamedIndividual(this.defaultIRI + "#" + individualId);
             OWLClassAssertionAxiom ca = this.owlDf.getOWLClassAssertionAxiom(objClass, newIndividual);
             this.loadedOntology.add(ca);
+            
+            if(classId.equals("lemming"))
+            	this.lemmings.add(individualId);
     }
     
     protected void assertDataPropertyToIndividual(String propertyId, String individualId, String data){
@@ -254,11 +245,23 @@ public class Manager {
     }
     
     protected void assertObjectPropertyToIndividual(String propertyId, String individual1Id, String individual2Id){
-        OWLObjectProperty  property = this.owlDf.getOWLObjectProperty (this.defaultIRI + "#" + propertyId);
+        boolean lemmings = false;
+    	for(String lemming: this.lemmings)
+    		if(lemming.equals(individual1Id))
+    			lemmings = true;
+    
+    	if(propertyId.equals("isOn") & lemmings) {
+    		resetLemmingLocations(individual1Id);
+    	}
+    	
+    	OWLObjectProperty  property = this.owlDf.getOWLObjectProperty (this.defaultIRI + "#" + propertyId);
         OWLNamedIndividual subject  = this.owlDf.getOWLNamedIndividual(this.defaultIRI + "#" + individual1Id);
         OWLNamedIndividual object   = this.owlDf.getOWLNamedIndividual(this.defaultIRI + "#" + individual2Id);
         OWLObjectPropertyAssertionAxiom dpa = this.owlDf.getOWLObjectPropertyAssertionAxiom(property, subject, object);
         this.loadedOntology.add(dpa);
+        
+
+        
     }
 
     public void reason(){
@@ -322,8 +325,6 @@ public class Manager {
     	// newAxiomList.forEach(System.out::println);
     	
     	return newAxiomList.toArray(new String[newAxiomList.size()]);
-    	
-    	
     }
     
     protected String parseToLogicDataPropertyAssertion(String axiom){
@@ -378,9 +379,28 @@ public class Manager {
     }
     
     
-
+    protected void resetLemmingLocations(String lemmingId) {
+    	this.reasoner = new ReasonerFactory().createReasoner(loadedOntology);
+    	this.reasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
+    	
+    	OWLClass owlClass = this.owlDf.getOWLClass(this.defaultIRI + "#spatialComponent");
+    	
+    	NodeSet<OWLNamedIndividual> nodes = this.reasoner.getInstances(owlClass);
+    	
+    	nodes.entities().forEach(System.out::println);
+    	nodes.entities().forEach(c -> removeAxioms(c, lemmingId));
+    }
     
-    
+    protected void removeAxioms(OWLNamedIndividual location, String lemming) {
+    	OWLNamedIndividual individual = this.owlDf.getOWLNamedIndividual(this.defaultIRI + "#" + lemming);
+    	OWLObjectProperty property = this.owlDf.getOWLObjectProperty(this.defaultIRI + "#isOn");
+    	
+    	OWLObjectPropertyAssertionAxiom dpa = this.owlDf.getOWLObjectPropertyAssertionAxiom(property, individual, location);
+    	
+    	if(this.loadedOntology.containsAxiom(dpa))
+    		this.man.removeAxiom(this.loadedOntology, dpa);
+    	
+    }
     
     
     
