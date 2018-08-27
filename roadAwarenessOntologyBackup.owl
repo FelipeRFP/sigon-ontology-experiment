@@ -1,0 +1,1251 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#"
+     xml:base="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology"
+     xmlns:roadawarenessontology="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:time="http://www.w3.org/2006/time#"
+     xmlns:swrla="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled -->
+
+    <owl:AnnotationProperty rdf:about="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#composes -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#composes">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#isPartOf"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#PathPart"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Path"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#connectedTo -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#connectedTo">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#PathPart"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#PathPart"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#happenedOn -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#happenedOn">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Event"/>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Crosswalk"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Path"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#PathPart"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Sidewalk"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Street"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#hasActiveRoleIn -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#hasActiveRoleIn">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#isInvolvedIn"/>
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#isCausedBy"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Actor"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Event"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#hasPassiveRoleIn -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#hasPassiveRoleIn">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#isInvolvedIn"/>
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#isCausedTo"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Actor"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Event"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#intersects -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#intersects">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Path"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Path"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#involves -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#involves">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#isInvolvedIn"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Event"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Actor"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#isAwareOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#isAwareOf">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Agent"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#isCausedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#isCausedBy">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#involves"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Event"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Actor"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#isCausedTo -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#isCausedTo">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#involves"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Event"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Actor"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#isInvolvedIn -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#isInvolvedIn">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Actor"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Event"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#isOn -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#isOn">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Actor"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#SpacialComponent"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#isPartOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#isPartOf">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#SpacialComponent"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#TrafficObject"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#isPhysicallyAPartOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#isPhysicallyAPartOf">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#isPartOf"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Path"/>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Crosswalk"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Sidewalk"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Street"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#wasRanOverBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#wasRanOverBy">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Lemming"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Car"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#happenedAtMinute -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#happenedAtMinute">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2006/time#minute"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Event"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#happenedAtSecond -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#happenedAtSecond">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2006/time#second"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Event"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#isColor -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#isColor">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#TrafficLight"/>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:oneOf>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                        <rdf:first>Blue</rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                <rdf:first>Green</rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                        <rdf:first>Red</rdf:first>
+                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </owl:oneOf>
+            </rdfs:Datatype>
+        </rdfs:range>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#isDead -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#isDead">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Actor"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#isMoving -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#isMoving">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Actor"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#onPoint -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#onPoint">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#onPointX -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#onPointX">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#onPoint"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#onPointY -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#onPointY">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#onPoint"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#onPointZ -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#onPointZ">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#onPoint"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.w3.org/2006/time#minute -->
+
+    <owl:DatatypeProperty rdf:about="http://www.w3.org/2006/time#minute"/>
+    
+
+
+    <!-- http://www.w3.org/2006/time#second -->
+
+    <owl:DatatypeProperty rdf:about="http://www.w3.org/2006/time#second"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Actor -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Actor"/>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Agent -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Agent">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Actor"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Aware -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Aware">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Event"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Car -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Car">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Actor"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#CarPath -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#CarPath">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Path"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Collision -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Collision">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Event"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Crosswalk -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Crosswalk">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#TrafficObject"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Sidewalk"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Street"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Direction -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Direction">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#SpacialComponent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#EdgePoint -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#EdgePoint">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Point"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#IntersectionPoint"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Event -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Event"/>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#IntersectionPoint -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#IntersectionPoint">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Point"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Lemming -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Lemming">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Actor"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#LemmingPath -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#LemmingPath">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Path"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Path -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Path">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#SpacialComponent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#PathPart -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#PathPart">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#SpacialComponent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Point -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Point">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#PathPart"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Track"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#SafeAware -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#SafeAware">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Aware"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#UnsafeAware"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Sidewalk -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Sidewalk">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#TrafficObject"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Street"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#SpacialComponent -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#SpacialComponent"/>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Street -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Street">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#TrafficObject"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Track -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Track">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#PathPart"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#TrafficLight -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#TrafficLight">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#TrafficObject"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#TrafficObject -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#TrafficObject"/>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#UnsafeAware -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#UnsafeAware">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Aware"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathAEBE -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathAEBE">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#CarPath"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathAECE -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathAECE">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#CarPath"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathAEDE -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathAEDE">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#CarPath"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathBECE -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathBECE">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#CarPath"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathBEDE -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathBEDE">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#CarPath"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathCEDE -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathCEDE">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#CarPath"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#crossWalkA -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#crossWalkA">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Crosswalk"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#crossWalkB -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#crossWalkB">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Crosswalk"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#directionEast -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#directionEast">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Direction"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#directionNorth -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#directionNorth">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Direction"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#directionSouth -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#directionSouth">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Direction"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#directionWest -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#directionWest">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Direction"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEBE -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEBE">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#LemmingPath"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAECE -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAECE">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#LemmingPath"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEDE -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEDE">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#LemmingPath"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEEE -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEEE">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#LemmingPath"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEFE -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEFE">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#LemmingPath"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBECE -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBECE">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#LemmingPath"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBEDE -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBEDE">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#LemmingPath"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBEEE -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBEEE">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#LemmingPath"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBEFE -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBEFE">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#LemmingPath"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathCEDE -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathCEDE">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#LemmingPath"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathCEEE -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathCEEE">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#LemmingPath"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathCEFE -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathCEFE">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#LemmingPath"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathDEEE -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathDEEE">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#LemmingPath"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathDEFE -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathDEFE">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#LemmingPath"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathEEFE -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathEEFE">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#LemmingPath"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathGEHE -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathGEHE">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#LemmingPath"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#pointSideWalkEdgeA -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#pointSideWalkEdgeA">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#EdgePoint"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEBE"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAECE"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEDE"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEEE"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEFE"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkAEAI"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#pointSideWalkEdgeB -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#pointSideWalkEdgeB">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#EdgePoint"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEBE"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBECE"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBEDE"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBEEE"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBEFE"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkBEAI"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#pointSideWalkEdgeC -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#pointSideWalkEdgeC">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#EdgePoint"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAECE"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBECE"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathCEDE"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathCEEE"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathCEFE"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkCEBI"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#pointSideWalkEdgeD -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#pointSideWalkEdgeD">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#EdgePoint"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEDE"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBEDE"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathCEDE"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathDEEE"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathDEFE"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkDEBI"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#pointSideWalkEdgeE -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#pointSideWalkEdgeE">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#EdgePoint"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEEE"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBEEE"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathCEEE"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathDEEE"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathEEFE"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkEECI"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#pointSideWalkEdgeF -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#pointSideWalkEdgeF">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#EdgePoint"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEFE"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBEFE"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathCEFE"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathDEFE"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathEEFE"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkFECI"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#pointSideWalkEdgeG -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#pointSideWalkEdgeG">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#EdgePoint"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathGEHE"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkGEDI"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#pointSideWalkEdgeH -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#pointSideWalkEdgeH">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#EdgePoint"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathGEHE"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkHEDI"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#pointSideWalkInternalA -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#pointSideWalkInternalA">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#IntersectionPoint"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkAEAI"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkAIBI"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkBEAI"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#pointSideWalkInternalB -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#pointSideWalkInternalB">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#IntersectionPoint"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkAIBI"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkBICI"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkCEBI"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkDEBI"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#pointSideWalkInternalC -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#pointSideWalkInternalC">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#IntersectionPoint"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkBICI"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkEECI"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkFECI"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#pointSideWalkInternalD -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#pointSideWalkInternalD">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#IntersectionPoint"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkGEDI"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkHEDI"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#pointStreetEdgeA -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#pointStreetEdgeA">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#EdgePoint"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackStreetAEAI"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#pointStreetEdgeB -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#pointStreetEdgeB">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#EdgePoint"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackStreetBEAI"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#pointStreetEdgeC -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#pointStreetEdgeC">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#EdgePoint"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackStreetCEAI"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#pointStreetEdgeD -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#pointStreetEdgeD">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#EdgePoint"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackStreetDEAI"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#pointStreetInternalA -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#pointStreetInternalA">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#IntersectionPoint"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackStreetAEAI"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackStreetBEAI"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackStreetCEAI"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackStreetDEAI"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#sideWalkA -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#sideWalkA">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Sidewalk"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#sideWalkB -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#sideWalkB">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Sidewalk"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#sideWalkC -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#sideWalkC">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Sidewalk"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#sideWalkD -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#sideWalkD">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Sidewalk"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#streetA -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#streetA">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Street"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#streetB -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#streetB">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Street"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkAEAI -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkAEAI">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Track"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEBE"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAECE"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEDE"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkAIBI -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkAIBI">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Track"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkBEAI -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkBEAI">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Track"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkBICI -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkBICI">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Track"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkCEBI -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkCEBI">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Track"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkDEBI -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkDEBI">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Track"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkEECI -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkEECI">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Track"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkFECI -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkFECI">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Track"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkGEDI -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkGEDI">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Track"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkHEDI -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkHEDI">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Track"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackStreetAEAI -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackStreetAEAI">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Track"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathAEBE"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathAECE"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathAEDE"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackStreetBEAI -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackStreetBEAI">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Track"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathAEBE"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathBECE"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathBEDE"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackStreetCEAI -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackStreetCEAI">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Track"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathAECE"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathBECE"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathCEDE"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackStreetDEAI -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackStreetDEAI">
+        <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Track"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathAEDE"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathBEDE"/>
+        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathCEDE"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Rules
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#X">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Y">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Z">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description>
+        <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Infers that if an agent is de active part in a aware event then the agent is aware of the passive part of the event</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Aware</rdfs:label>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Agent"/>
+                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#X"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                                <swrl:classPredicate rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Aware"/>
+                                <swrl:argument1 rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Y"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                        <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#isCausedBy"/>
+                                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Y"/>
+                                        <swrl:argument2 rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#X"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                        <rdf:first>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                                <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#isCausedTo"/>
+                                                <swrl:argument1 rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Y"/>
+                                                <swrl:argument2 rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Z"/>
+                                            </rdf:Description>
+                                        </rdf:first>
+                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#isAwareOf"/>
+                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#X"/>
+                        <swrl:argument2 rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Z"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
+
