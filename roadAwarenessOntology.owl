@@ -43,17 +43,6 @@
     
 
 
-    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#composes -->
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#composes">
-        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#isPartOf"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#PathPart"/>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Path"/>
-    </owl:ObjectProperty>
-    
-
-
     <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#connectedTo -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#connectedTo">
@@ -166,42 +155,8 @@
     <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#isOn -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#isOn">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Actor"/>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#SpacialComponent"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#isPartOf -->
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#isPartOf">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-        <rdfs:domain>
-            <owl:Class>
-                <owl:unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#SpacialComponent"/>
-                    <rdf:Description rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#TrafficObject"/>
-                </owl:unionOf>
-            </owl:Class>
-        </rdfs:domain>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#isPhysicallyAPartOf -->
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#isPhysicallyAPartOf">
-        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#isPartOf"/>
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Path"/>
-        <rdfs:range>
-            <owl:Class>
-                <owl:unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Crosswalk"/>
-                    <rdf:Description rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Sidewalk"/>
-                    <rdf:Description rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Street"/>
-                </owl:unionOf>
-            </owl:Class>
-        </rdfs:range>
     </owl:ObjectProperty>
     
 
@@ -788,12 +743,14 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#pointSideWalkEdgeA">
         <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#EdgePoint"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEBE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAECE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEDE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEEE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEFE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkAEAI"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEBE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAECE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEDE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEEE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEFE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkAEAI"/>
+
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#sideWalkA"/>
     </owl:NamedIndividual>
     
 
@@ -802,12 +759,15 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#pointSideWalkEdgeB">
         <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#EdgePoint"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEBE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBECE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBEDE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBEEE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBEFE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkBEAI"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEBE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBECE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBEDE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBEEE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBEFE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkBEAI"/>
+
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#sideWalkA"/>
+
     </owl:NamedIndividual>
     
 
@@ -816,12 +776,17 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#pointSideWalkEdgeC">
         <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#EdgePoint"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAECE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBECE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathCEDE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathCEEE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathCEFE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkCEBI"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAECE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBECE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathCEDE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathCEEE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathCEFE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkCEBI"/>
+
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#sideWalkB"/>
+
+
+
     </owl:NamedIndividual>
     
 
@@ -830,11 +795,16 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#pointSideWalkEdgeD">
         <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#EdgePoint"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEDE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBEDE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathCEDE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathDEEE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathDEFE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEDE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBEDE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathCEDE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathDEEE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathDEFE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkDEBI"/>
+
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#sideWalkB"/>
+
+
     </owl:NamedIndividual>
     
 
@@ -843,12 +813,15 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#pointSideWalkEdgeE">
         <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#EdgePoint"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEEE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBEEE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathCEEE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathDEEE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathEEFE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkEECI"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEEE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBEEE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathCEEE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathDEEE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathEEFE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkEECI"/>
+
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#sideWalkC"/>
+
     </owl:NamedIndividual>
     
 
@@ -857,12 +830,15 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#pointSideWalkEdgeF">
         <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#EdgePoint"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEFE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBEFE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathCEFE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathDEFE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathEEFE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkFECI"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEFE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBEFE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathCEFE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathDEFE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathEEFE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkFECI"/>
+
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#sideWalkC"/>
+
     </owl:NamedIndividual>
     
 
@@ -871,8 +847,11 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#pointSideWalkEdgeG">
         <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#EdgePoint"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathGEHE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkGEDI"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathGEHE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkGEDI"/>
+
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#sideWalkD"/>
+
     </owl:NamedIndividual>
     
 
@@ -881,8 +860,12 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#pointSideWalkEdgeH">
         <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#EdgePoint"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathGEHE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkHEDI"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathGEHE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkHEDI"/>
+
+
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#sideWalkD"/>
+
     </owl:NamedIndividual>
     
 
@@ -891,9 +874,12 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#pointSideWalkInternalA">
         <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#IntersectionPoint"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkAEAI"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkAIBI"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkBEAI"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkAEAI"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkAIBI"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkBEAI"/>
+
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#sideWalkA"/>
+
     </owl:NamedIndividual>
     
 
@@ -902,10 +888,14 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#pointSideWalkInternalB">
         <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#IntersectionPoint"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkAIBI"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkBICI"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkCEBI"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkDEBI"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkAIBI"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkBICI"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkCEBI"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkDEBI"/>
+
+
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#sideWalkB"/>
+
     </owl:NamedIndividual>
     
 
@@ -914,9 +904,13 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#pointSideWalkInternalC">
         <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#IntersectionPoint"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkBICI"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkEECI"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkFECI"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkBICI"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkEECI"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkFECI"/>
+
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#sideWalkC"/>
+
+
     </owl:NamedIndividual>
     
 
@@ -925,8 +919,11 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#pointSideWalkInternalD">
         <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#IntersectionPoint"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkGEDI"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkHEDI"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkGEDI"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkHEDI"/>
+
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#sideWalkD"/>
+
     </owl:NamedIndividual>
     
 
@@ -935,7 +932,13 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#pointStreetEdgeA">
         <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#EdgePoint"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackStreetAEAI"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathAEBE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathAECE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathAEDE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackStreetAEAI"/>
+
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#streetA"/>
+
     </owl:NamedIndividual>
     
 
@@ -944,7 +947,12 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#pointStreetEdgeB">
         <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#EdgePoint"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackStreetBEAI"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathAEBE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathBECE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathBEDE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackStreetBEAI"/>
+
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#streetB"/>
     </owl:NamedIndividual>
     
 
@@ -953,7 +961,12 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#pointStreetEdgeC">
         <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#EdgePoint"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackStreetCEAI"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathAECE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathBECE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathCEDE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackStreetCEAI"/>
+
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#streetA"/>
     </owl:NamedIndividual>
     
 
@@ -962,7 +975,12 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#pointStreetEdgeD">
         <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#EdgePoint"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackStreetDEAI"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathAEDE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathBEDE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathCEDE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackStreetDEAI"/>
+
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#streetB"/>
     </owl:NamedIndividual>
     
 
@@ -971,10 +989,22 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#pointStreetInternalA">
         <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#IntersectionPoint"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackStreetAEAI"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackStreetBEAI"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackStreetCEAI"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackStreetDEAI"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathAEBE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathAECE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathAEDE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathBECE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathBEDE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathCEDE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackStreetAEAI"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackStreetBEAI"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackStreetCEAI"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackStreetDEAI"/>
+
+
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#streetA"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#streetB"/>
+
+
     </owl:NamedIndividual>
     
 
@@ -1031,11 +1061,13 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkAEAI">
         <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Track"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEBE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAECE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEDE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEEE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEFE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEBE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAECE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEDE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEEE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEFE"/>
+
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#sideWalkA"/>
     </owl:NamedIndividual>
     
 
@@ -1044,14 +1076,17 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkAIBI">
         <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Track"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAECE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEDE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEEE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEFE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBECE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBEDE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBEEE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBEFE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#crossWalkA"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAECE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEDE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEEE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEFE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBECE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBEDE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBEEE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBEFE"/>
+
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#streetB"/>
     </owl:NamedIndividual>
     
 
@@ -1060,11 +1095,13 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkBEAI">
         <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Track"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEBE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBECE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBEDE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBEEE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBEFE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEBE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBECE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBEDE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBEEE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBEFE"/>
+
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#sideWalkA"/>
     </owl:NamedIndividual>
     
 
@@ -1073,14 +1110,17 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkBICI">
         <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Track"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEEE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEFE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBEEE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBEFE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathCEEE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathCEFE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathDEEE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathDEFE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#crossWalkB"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEEE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEFE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBEEE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBEFE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathCEEE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathCEFE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathDEEE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathDEFE"/>
+
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#streetA"/>
     </owl:NamedIndividual>
     
 
@@ -1089,11 +1129,13 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkCEBI">
         <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Track"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAECE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBECE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathCEDE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathCEEE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathCEFE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAECE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBECE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathCEDE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathCEEE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathCEFE"/>
+
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#sideWalkB"/>
     </owl:NamedIndividual>
     
 
@@ -1102,11 +1144,13 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkDEBI">
         <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Track"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEDE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBEDE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathCEDE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathDEEE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathDEFE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEDE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBEDE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathCEDE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathDEEE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathDEFE"/>
+
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#sideWalkB"/>
     </owl:NamedIndividual>
     
 
@@ -1115,11 +1159,13 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkEECI">
         <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Track"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEEE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBEEE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathCEEE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathDEEE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathEEFE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEEE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBEEE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathCEEE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathDEEE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathEEFE"/>
+
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#sideWalkC"/>
     </owl:NamedIndividual>
     
 
@@ -1128,11 +1174,13 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkFECI">
         <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Track"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEFE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBEFE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathCEFE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathDEFE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathEEFE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathAEFE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathBEFE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathCEFE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathDEFE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathEEFE"/>
+
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#sideWalkC"/>
     </owl:NamedIndividual>
     
 
@@ -1141,7 +1189,9 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkGEDI">
         <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Track"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathGEHE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathGEHE"/>
+
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#sideWalkD"/>
     </owl:NamedIndividual>
     
 
@@ -1150,7 +1200,9 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackSideWalkHEDI">
         <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Track"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathGEHE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#lemmingPathGEHE"/>
+
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#sideWalkD"/>
     </owl:NamedIndividual>
     
 
@@ -1159,9 +1211,12 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackStreetAEAI">
         <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Track"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathAEBE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathAECE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathAEDE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathAEBE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathAECE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathAEDE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#streetA"/>
+
+
     </owl:NamedIndividual>
     
 
@@ -1170,9 +1225,10 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackStreetBEAI">
         <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Track"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathAEBE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathBECE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathBEDE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathAEBE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathBECE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathBEDE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#streetB"/>
     </owl:NamedIndividual>
     
 
@@ -1181,9 +1237,10 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackStreetCEAI">
         <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Track"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathAECE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathBECE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathCEDE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathAECE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathBECE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathCEDE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#streetA"/>
     </owl:NamedIndividual>
     
 
@@ -1192,9 +1249,10 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#trackStreetDEAI">
         <rdf:type rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Track"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathAEDE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathBEDE"/>
-        <composes rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathCEDE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathAEDE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathBEDE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#carPathCEDE"/>
+        <isOn rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#streetB"/>
     </owl:NamedIndividual>
     
 
@@ -1280,53 +1338,6 @@
                         <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
                         <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#isAwareOf"/>
                         <swrl:argument1 rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#X"/>
-                        <swrl:argument2 rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Z"/>
-                    </rdf:Description>
-                </rdf:first>
-                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-            </rdf:Description>
-        </swrl:head>
-    </rdf:Description>
-    <rdf:Description>
-        <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
-        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">If something is somewhere and another thing is part of of the first thing then its also somewhere</rdfs:comment>
-        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Locallity</rdfs:label>
-        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
-        <swrl:body>
-            <rdf:Description>
-                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
-                <rdf:first>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
-                        <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#isOn"/>
-                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#X"/>
-                        <swrl:argument2 rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Z"/>
-                    </rdf:Description>
-                </rdf:first>
-                <rdf:rest>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
-                        <rdf:first>
-                            <rdf:Description>
-                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
-                                <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#composes"/>
-                                <swrl:argument1 rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Y"/>
-                                <swrl:argument2 rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#X"/>
-                            </rdf:Description>
-                        </rdf:first>
-                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-                    </rdf:Description>
-                </rdf:rest>
-            </rdf:Description>
-        </swrl:body>
-        <swrl:head>
-            <rdf:Description>
-                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
-                <rdf:first>
-                    <rdf:Description>
-                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
-                        <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#isOn"/>
-                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Y"/>
                         <swrl:argument2 rdf:resource="http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology#Z"/>
                     </rdf:Description>
                 </rdf:first>

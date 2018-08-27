@@ -50,6 +50,9 @@ public class SemanticsContextService extends CustomContext{
 	
 	@Override
 	public void appendFact(String fact) {
+		if(fact.startsWith("trafficLight"))
+			return;
+		
 		fact = fact.replaceAll(" ", "");
 		
 		if(this.verify(fact))
