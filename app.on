@@ -3,6 +3,7 @@ communication:
 	actuator("trafficLight", "agent.TrafficLight").
 	
 beliefs:
+	trafficLight(green).
 
 _semantics:
 
@@ -12,10 +13,9 @@ desires:
 	
 intentions:
 
-
 planner:
 	
-	plan(safe(Lemming), [action(trafficLight(), trafficLigh(green), trafficLight(Red))], 
+	plan(safe(Lemming), [action(trafficLight(), trafficLight(green), trafficLight(red))], 
 		[isOn(Lemming, crossWalkB), isA(Lemming, lemming), isA(Car, car), isOn(Car, streetA)], 
 		trafficLight(red)).
 			

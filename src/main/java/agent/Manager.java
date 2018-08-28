@@ -55,6 +55,7 @@ import org.semanticweb.owlapi.util.SimpleShortFormProvider;
     //     Raciocinar sobre; (Caso Assertion na etapa passada)
     //     Salvar; 
 
+@SuppressWarnings("deprecation")
 public class Manager {
     
 	public IRI defaultIRI;
@@ -259,6 +260,8 @@ public class Manager {
     		resetLemmingLocations(individual1Id);
     	}
     	
+    	System.out.println(propertyId + individual1Id + individual2Id);
+    	
     	OWLObjectProperty  property = this.owlDf.getOWLObjectProperty (this.defaultIRI + "#" + propertyId);
         OWLNamedIndividual subject  = this.owlDf.getOWLNamedIndividual(this.defaultIRI + "#" + individual1Id);
         OWLNamedIndividual object   = this.owlDf.getOWLNamedIndividual(this.defaultIRI + "#" + individual2Id);
@@ -409,10 +412,6 @@ public class Manager {
     		this.man.removeAxiom(this.loadedOntology, dpa);
     	
     }
-    
-    
-    
-    
     
     
     

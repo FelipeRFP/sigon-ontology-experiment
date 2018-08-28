@@ -22,21 +22,22 @@ public class Main {
 		contexts[0] = context;
 		startAgent("app.on", contexts);
 		
-//		while (true) {
-//			@SuppressWarnings("resource")
-//			Scanner scanIn = new Scanner(System.in);
-//			String inputString = scanIn.nextLine();
-//			if(inputString.trim().equals("exit")) {
-//				context.save();
-//				break;}
-//			if (!inputString.isEmpty());
-//				Hear.envObservable.onNext(inputString);
-//		}
+		while (true) {
+			@SuppressWarnings("resource")
+			Scanner scanIn = new Scanner(System.in);
+			String inputString = scanIn.nextLine();
+			if(inputString.trim().equals("exit")) {
+				context.save();
+				break;}
+			if (!inputString.isEmpty());
+				Hear.envObservable.onNext(inputString);
+		}
 		
-		SemanticsSimulation scs = new SemanticsSimulation();
+//		SemanticsSimulation scs = new SemanticsSimulation();
+//		
+//		scs.run();
 		
-		scs.run();
-		
+//		context.save();
 		
 		
 	}

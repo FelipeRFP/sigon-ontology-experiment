@@ -1,9 +1,7 @@
 package agent;
 
-import java.sql.Time;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -49,27 +47,31 @@ public class SemanticsSimulation {
 		List<Car> cars = new ArrayList<>();
 		
 		int cycle = 0;
-		while(cycle<100) {
+		while(cycle<5) {
 			cycle++;
 			System.out.println(cycle);
+			
+			try {
 			lemmings.forEach(Lemming::walk);
 			cars.forEach(Car::walk);
+			}catch(Exception e) {
+				cars.forEach(System.out::println);
+			}
 			
 			date = new Date();
 			if(cycle % 10 == 0);
 				cars.add(new Car(carPaths[random.nextInt(6)],(random.nextInt(2)+1),"car"+dateFormat.format(date)));
 			
 			date = new Date();
-			if(cycle % ((random.nextInt(5))+1) == 0);
+			if(cycle % ((random.nextInt(5))+1) == 0)
 				lemmings.add(new Lemming(lemmingPaths[random.nextInt(16)],(random.nextInt(4)+1),random.nextBoolean(),"lemming"+dateFormat.format(date)));
 				
 			try {
 				TimeUnit.SECONDS.sleep(1);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
-				
 				
 		}
 	}
@@ -78,6 +80,7 @@ public class SemanticsSimulation {
 		public String name;
 		
 		public boolean inverse;
+		public boolean remove = false;
 		
 		public String[] path;
 		public String currentPoint;
@@ -88,12 +91,15 @@ public class SemanticsSimulation {
 		public int actionStatus;
 		
 		public void walk() {
+			if(remove)
+				return;
 			
 			actionStatus++;
 			
 			if(actionStatus == velocity) {
 				if((inverse & pointer == 0)|(!inverse & pointer == (this.path.length-1))) {
 					Hear.envObservable.onNext("isOn(" + name + ",nowhere).");
+					remove = true;
 					return;
 				}
 				actionStatus = 0;
@@ -131,6 +137,8 @@ public class SemanticsSimulation {
 
 	protected class Car{
 		public String name;
+		
+		public boolean remove = false;
 		public boolean inverse;
 		
 		public String[] path;
@@ -142,6 +150,8 @@ public class SemanticsSimulation {
 		public int actionStatus;
 		
 		public void walk() {
+			if(remove)
+				return;
 			
 			actionStatus++;
 			
@@ -154,6 +164,7 @@ public class SemanticsSimulation {
 			if(actionStatus == velocity) {
 				if(pointer == (this.path.length-1)){
 					Hear.envObservable.onNext("isOn(" + name + ",nowhere).");
+					remove = true;
 					return;
 				}
 				actionStatus = 0;
