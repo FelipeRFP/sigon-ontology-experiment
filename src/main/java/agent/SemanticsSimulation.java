@@ -1,116 +1,188 @@
 package agent;
 
+import java.sql.Time;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 public class SemanticsSimulation {
 	
-	String[][] paths = {  
-			{"AE", "AI", "BE"}, 
-			{"AE", "AI", "BI", "CE"}, 
-			{"AE", "AI", "BI", "DE"}, 
-			{"AE", "AI", "BI", "CI", "EE"}, 
-			{"AE", "AI", "BI", "CI", "FE"}, 
-			{"BE", "AI", "BI", "CE"}, 
-			{"BE", "AI", "BI", "DE"}, 
-			{"BE", "AI", "BI", "CI","EE"}, 
-			{"BE", "AI", "BI", "CI","FE"}, 
-			{"CE", "BI", "DE"}, 
-			{"CE", "BI", "CI", "EE"}, 
-			{"CE", "BI", "CI", "FE"}, 
-			{"DE", "BI", "CI", "EE"}, 
-			{"DE", "BI", "CI", "FE"}, 
-			{"EE", "CI", "FE"}, 
-			{"GE", "DI", "HE"}
+	protected String[][] lemmingPaths = {  
+			{"EdgeA", "InternalA", "EdgeB"}, 
+			{"EdgeA", "InternalA", "InternalB", "EdgeC"}, 
+			{"EdgeA", "InternalA", "InternalB", "EdgeD"}, 
+			{"EdgeA", "InternalA", "InternalB", "InternalC", "EdgeE"}, 
+			{"EdgeA", "InternalA", "InternalB", "InternalC", "EdgeF"}, 
+			{"EdgeB", "InternalA", "InternalB", "EdgeC"}, 
+			{"EdgeB", "InternalA", "InternalB", "EdgeD"}, 
+			{"EdgeB", "InternalA", "InternalB", "InternalC","EdgeE"}, 
+			{"EdgeB", "InternalA", "InternalB", "InternalC","EdgeF"}, 
+			{"EdgeC", "InternalB", "EdgeD"}, 
+			{"EdgeC", "InternalB", "InternalC", "EdgeE"}, 
+			{"EdgeC", "InternalB", "InternalC", "EdgeF"}, 
+			{"EdgeD", "InternalB", "InternalC", "EdgeE"}, 
+			{"EdgeD", "InternalB", "InternalC", "EdgeF"}, 
+			{"EdgeE", "InternalC", "EdgeF"}, 
+			{"EdgeG", "InternalD", "EdgeH"}
 			};	
 	
+	protected String[][] carPaths = {
+			{"EdgeA", "InternalA", "EdgeB"},
+			{"EdgeA", "InternalA", "EdgeC"},
+			{"EdgeA", "InternalA", "EdgeD"},
+			{"EdgeB", "InternalA", "EdgeC"},
+			{"EdgeB", "InternalA", "EdgeD"},
+			{"EdgeD", "InternalA", "EdgeC"}			
+	};
+	
 	public void run() {
-		
+		Random random = new Random();
+		Date date = new Date();
+		DateFormat dateFormat = new SimpleDateFormat("mmddss");
+			
 		List<Lemming> lemmings = new ArrayList<>();
-		List<Car> car = new ArrayList<>();
+		List<Car> cars = new ArrayList<>();
 		
-		int cicle = 0;
-		while(cicle<100) {
-			if(cicle % 10 == 0);
+		int cycle = 0;
+		while(cycle<100) {
+			cycle++;
+			System.out.println(cycle);
+			lemmings.forEach(Lemming::walk);
+			cars.forEach(Car::walk);
+			
+			date = new Date();
+			if(cycle % 10 == 0);
+				cars.add(new Car(carPaths[random.nextInt(6)],(random.nextInt(2)+1),"car"+dateFormat.format(date)));
+			
+			date = new Date();
+			if(cycle % ((random.nextInt(5))+1) == 0);
+				lemmings.add(new Lemming(lemmingPaths[random.nextInt(16)],(random.nextInt(4)+1),random.nextBoolean(),"lemming"+dateFormat.format(date)));
+				
+			try {
+				TimeUnit.SECONDS.sleep(1);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 				
 				
-			
-			
 		}
 	}
 	
-	class Lemming{
+	protected class Lemming{
+		public String name;
+		
 		public boolean inverse;
 		
 		public String[] path;
+		public String currentPoint;
 		
-		public String startPoint; 
-		public String finalPoint; 
-		public String actualPoint;
-		
-		public int velocity;   //Cicles per action
+		int pointer;
+
+		public int velocity;   //Cycles per action
 		public int actionStatus;
 		
 		public void walk() {
+			
 			actionStatus++;
+			
 			if(actionStatus == velocity) {
+				if((inverse & pointer == 0)|(!inverse & pointer == (this.path.length-1))) {
+					Hear.envObservable.onNext("isOn(" + name + ",nowhere).");
+					return;
+				}
 				actionStatus = 0;
 				nextPoint();
 			}
-			
-			
 		}
 		
 		public void nextPoint() {
+			pointer = inverse ? pointer-1 : pointer+1;
+			currentPoint = path[pointer];
+			
+			Hear.envObservable.onNext("isOn(" + name + "," + "pointSideWalk" + currentPoint + ").");
+			
 			
 		}
 		
-		Lemming(String[] path, int velocity, boolean inverse){
+		Lemming(String[] path, int velocity, boolean inverse, String name){
+			this.name = name;
 			this.velocity = velocity;
 			this.inverse = inverse;
 			this.path = path;
-			if(!inverse) {
-				this.startPoint = path[0];
-				this.finalPoint = path[path.length - 1];
-			}else {
-				this.startPoint = path[path.length - 1];
-				this.finalPoint = path[0];
-			}
+			
+			if(!inverse) 
+				this.pointer = 0;
+			else 
+				this.pointer = path.length - 1;
+			
+			this.currentPoint = path[pointer];
+			
+			Hear.envObservable.onNext("isA(" + name + ",lemming).");
+			Hear.envObservable.onNext("isOn(" + name + "," + "pointSideWalk" + currentPoint + ").");
+			
 		}
 	}
+
+	protected class Car{
+		public String name;
+		public boolean inverse;
 		
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	class Car{
-		public String startPoint; 
-		public String finalPoint; 
-		public String velocity;   //Cicles per action
-		public String location;
+		public String[] path;
+		public String currentPoint;
+		
+		int pointer;
+
+		public int velocity;   //Cycles per action
+		public int actionStatus;
+		
+		public void walk() {
 			
-		Car(String startPoint, String finalPoint, String velocity, String location){
-			this.startPoint = startPoint;
-			this.finalPoint = finalPoint;
+			actionStatus++;
+			
+			if(path[2].equals("EdgeC") & !TrafficLight.isGreen) {
+				if(actionStatus == velocity)
+					actionStatus--;
+				return;
+			}
+			
+			if(actionStatus == velocity) {
+				if(pointer == (this.path.length-1)){
+					Hear.envObservable.onNext("isOn(" + name + ",nowhere).");
+					return;
+				}
+				actionStatus = 0;
+				nextPoint();
+			}
+		}
+		
+		public void nextPoint() {
+			pointer++;
+			currentPoint = path[pointer];
+			
+			Hear.envObservable.onNext("isOn(" + name + "," + "pointStreet" + currentPoint + ").");
+			
+			
+		}
+		
+		Car(String[] path, int velocity, String name){
+			this.name = name;
 			this.velocity = velocity;
-			this.location = location;
-		}	
+			this.path = path;
+			
+			this.pointer = 0;
+			
+			this.currentPoint = path[pointer];
+			
+			Hear.envObservable.onNext("isA(" + name + ",car).");
+			Hear.envObservable.onNext("isOn(" + name + "," + "pointStreet" + currentPoint + ").");
+			
+		}
 	}
 	
 }

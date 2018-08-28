@@ -18,18 +18,27 @@ import br.ufsc.ine.parser.VerboseListener;
 public class Main {	
 	public static void main(String[] args) {
 		CustomContext[] contexts = new CustomContext[1];
-		contexts[0] = new SemanticsContextService();
+		SemanticsContextService context = new SemanticsContextService();
+		contexts[0] = context;
 		startAgent("app.on", contexts);
 		
-		while (true) {
-			@SuppressWarnings("resource")
-			Scanner scanIn = new Scanner(System.in);
-			String inputString = scanIn.nextLine();
-			if(inputString.trim().equals("exit"))
-				
-			if (!inputString.isEmpty());
-				Hear.envObservable.onNext(inputString);
-		}
+//		while (true) {
+//			@SuppressWarnings("resource")
+//			Scanner scanIn = new Scanner(System.in);
+//			String inputString = scanIn.nextLine();
+//			if(inputString.trim().equals("exit")) {
+//				context.save();
+//				break;}
+//			if (!inputString.isEmpty());
+//				Hear.envObservable.onNext(inputString);
+//		}
+		
+		SemanticsSimulation scs = new SemanticsSimulation();
+		
+		scs.run();
+		
+		
+		
 	}
 	
 	public static void startAgent(String filePath, CustomContext[] contexts) {

@@ -11,11 +11,14 @@ public class TrafficLight extends Actuator {
 	public void act(List<String> args) {
 			TrafficLight.isGreen = !TrafficLight.isGreen;
 			
-			if(TrafficLight.isGreen)
+			if(TrafficLight.isGreen) {
+				System.out.println("trafficLight(green).");
 				Hear.envObservable.onNext("trafficLight(green).");
-			else
+			}
+			else {
+				System.out.println("trafficLight(red).");
 				Hear.envObservable.onNext("trafficLight(red).");
-		
+			}
 	}
 	
 }

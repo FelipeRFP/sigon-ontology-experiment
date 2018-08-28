@@ -30,6 +30,18 @@ public class SemanticsContextService extends CustomContext{
 		}
 	}
 
+	public void save() {
+		try {
+			ontology.saveOntology("baseOntology.owl");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (OWLOntologyStorageException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	@Override
 	public List<BridgeRule> callRules(){
     	Head head1 = Head.builder().context(this).clause("X").build();

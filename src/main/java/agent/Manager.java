@@ -214,13 +214,18 @@ public class Manager {
     }
     
     protected void assertIsA(String classId, String individualId){
-            OWLClass objClass = this.owlDf.getOWLClass(this.defaultIRI + "#" + classId);
-            OWLNamedIndividual newIndividual = this.owlDf.getOWLNamedIndividual(this.defaultIRI + "#" + individualId);
-            OWLClassAssertionAxiom ca = this.owlDf.getOWLClassAssertionAxiom(objClass, newIndividual);
-            this.loadedOntology.add(ca);
-            
-            if(classId.equals("lemming"))
-            	this.lemmings.add(individualId);
+    	
+    	classId = classId.replaceFirst(classId.substring(0,1), classId.substring(0,1).toUpperCase());
+    	
+    	OWLClass objClass = this.owlDf.getOWLClass(this.defaultIRI + "#" + classId);
+    	
+    	OWLNamedIndividual newIndividual = this.owlDf.getOWLNamedIndividual(this.defaultIRI + "#" + individualId);
+    	
+    	OWLClassAssertionAxiom ca = this.owlDf.getOWLClassAssertionAxiom(objClass, newIndividual);
+    	this.loadedOntology.add(ca);
+    	
+    	if(classId.equals("Lemming"))
+    		this.lemmings.add(individualId);
     }
     
     protected void assertDataPropertyToIndividual(String propertyId, String individualId, String data){
@@ -351,7 +356,10 @@ public class Manager {
     	while(matcher.find())
     		 terms.add(matcher.group().replaceAll("#", ""));
     	
-    	return "isA(" + terms.get(1)+ ", " + terms.get(0) + ").";
+    	String classString = terms.get(0);
+    	String classDown = classString.substring(0, 1).toLowerCase() + classString.substring(1, classString.length());
+    	
+    	return "isA(" + terms.get(1)+ ", " + classDown + ").";
     	
     }
     

@@ -1,6 +1,6 @@
 communication:
 	sensor("hear", "agent.Hear").
-	actuator("trafficLightMessage", "agent.Speak").
+	actuator("trafficLight", "agent.TrafficLight").
 	
 beliefs:
 
@@ -15,11 +15,11 @@ intentions:
 
 planner:
 	
-	plan(safe(Lemming), [action(trafficLightMessage(), trafficLigh(green), trafficLight(Red))], 
+	plan(safe(Lemming), [action(trafficLight(), trafficLigh(green), trafficLight(Red))], 
 		[isOn(Lemming, crossWalkB), isA(Lemming, lemming), isA(Car, car), isOn(Car, streetA)], 
 		trafficLight(red)).
 			
-	plan(trafficLight(green), [action(trafficLightMessage(), trafficLight(red), trafficLight(green))],
+	plan(trafficLight(green), [action(trafficLight(), trafficLight(red), trafficLight(green))],
 		[trafficLight(red),  not isOn(Lemming, sideWalkB),  not isOn(Lemming, sideWalkC), isA(Lemming, lemming)],
 		trafficLight(green)).
 		
