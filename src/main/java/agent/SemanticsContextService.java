@@ -53,36 +53,20 @@ public class SemanticsContextService extends CustomContext{
     	BridgeRule rule1 = BridgeRule.builder().body(body1).head(head1).build();
     	BridgeRule rule2 = BridgeRule.builder().body(body2Term1).head(head2).build();
     	
-    	Head head3 = Head.builder().context(CommunicationContextService.getInstance()).clause("act(trafficLight())").build();
-    	Body body3Term1 = Body.builder().context(PlansContextService.getInstance()).clause
-    			("plan(_,_,[isOn(Lemming, crossWalkB), isA(Lemming, lemming), isA(Car, car), isOn(Car, streetA)],_)").build();
-    	Body body3Term2 = Body.builder().context(this).clause("isOn(Lemming, crossWalkB)").build();
-    	Body body3Term3 = Body.builder().context(this).clause("isOn(Lemming, crossWalkC)").or(body3Term2).build();
-    	Body body3Term4 = Body.builder().context(this).clause("isA(Lemming, lemming)").build();
-    	Body body3Term5 = Body.builder().context(this).clause("isA(Car, car)").build();
-    	Body body3Term6 = Body.builder().context(this).clause("isOn(Car, streetA)")
-    			.and(body3Term1)
-    			.and(body3Term3)
-    			.and(body3Term4)
-    			.and(body3Term5)
-    			.build();
-    	
-    	BridgeRule rule3 = BridgeRule.builder().body(body3Term6).head(head3).build();
-    	
-    	Head head4 = Head.builder().context(CommunicationContextService.getInstance()).clause("act(trafficLight())").build();
-    	Body body4Term1 = Body.builder().context(PlansContextService.getInstance()).clause
-    			("plan(_,_,[trafficLight(red),  not isOn(Lemming, sideWalkB),  not isOn(Lemming, sideWalkC), isA(Lemming, lemming)],_)").build();
-    	Body body4Term2 = Body.builder().context(BeliefsContextService.getInstance()).clause("trafficLight(red)").build();
-    	Body body4Term3 = Body.builder().context(this).notClause("isOn(Lemming, sideWalkB)").build();
-    	Body body4Term4 = Body.builder().context(this).notClause("isOn(Lemming, sideWalkC)").build();
-    	Body body4Term5 = Body.builder().context(this).clause("isA(Lemming, lemming))")
-    			.and(body4Term1)
-    			.and(body4Term2)
-    			.and(body4Term3)
-    			.and(body4Term4)
-    			.build();
-    	
-    	BridgeRule rule4 = BridgeRule.builder().body(body4Term5).head(head4).build();
+        
+        String desire = "safe(Lemming)"
+
+        String varActions = "Actions";
+        String action = "action(Action, _, _)";
+
+        String varPreconditions = "W";
+        String[] preconditions = { "isOn(Lemming, crossWalkB)", "isA(Lemming, lemming)", "isA(Car, car)", "isOn(Car, trackStreetAEAI)"};
+
+        String plan = "plan(" + desire + "," + varActions + "," + varPreconditions + "," + postCondition +")";
+
+
+        Body body3 = Body.builder().context(PlansContextService).clause(plan).
+
     	
     	List<BridgeRule> list = new ArrayList<>();
     	list.add(rule1);
