@@ -23,4 +23,14 @@ planner:
 		[trafficLight(red),  not isOn(Lemming, sideWalkB),  not isOn(Lemming, sideWalkC), isA(Lemming, lemming)],
 		trafficLight(green)).
 		
-		
+
+//TUDO que perceber adicione em beliefs		
+!beliefs X :- communication sense(X).
+
+//Não fazemos revisão de crenças, por isso essas duas regras.
+!_semantics -isOn(X, _) :- communication sense(isOn(X, _)).
+!_semantics +isOn(X, _) :- communication sense(isOn(X, _)).
+
+//Adiçã
+! desires safe(X) :- _semantics isA(X, lemming).
+

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
     <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
-        <uri id="Automatically generated entry, Timestamp=1535652545545" name="http://www.example.com/sigonOntology" uri="baseOntology.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1535652545545" name="duplicate:http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology" uri="roadAwarenessOntologyBackup.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1535652545545" name="duplicate:http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology" uri="roadAwarenessOntology.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1535744716103" name="http://www.example.com/sigonOntology" uri="baseOntology.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1535744716103" name="duplicate:http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology" uri="roadAwarenessOntologyBackup.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1535744716103" name="duplicate:http://www.semanticweb.org/felipe/ontologies/2018/2/roadawarenessontology" uri="roadAwarenessOntology.owl"/>
     </group>
 </catalog>
