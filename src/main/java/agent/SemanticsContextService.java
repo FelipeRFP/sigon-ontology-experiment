@@ -11,11 +11,10 @@ import alice.tuprolog.InvalidTheoryException;
 import br.ufsc.ine.agent.bridgerules.Body;
 import br.ufsc.ine.agent.bridgerules.BridgeRule;
 import br.ufsc.ine.agent.bridgerules.Head;
-import br.ufsc.ine.agent.context.beliefs.BeliefsContextService;
 import br.ufsc.ine.agent.context.communication.CommunicationContextService;
 import br.ufsc.ine.agent.context.custom.CustomContext;
-import br.ufsc.ine.agent.context.desires.DesiresContextService;
 import br.ufsc.ine.agent.context.plans.PlansContextService;
+import br.ufsc.ine.agent.context.desires.DesiresContextService;
 
 public class SemanticsContextService extends CustomContext{
 	
@@ -53,30 +52,48 @@ public class SemanticsContextService extends CustomContext{
     	BridgeRule rule1 = BridgeRule.builder().body(body1).head(head1).build();
     	BridgeRule rule2 = BridgeRule.builder().body(body2Term1).head(head2).build();
     	
-        
-        String desire = "safe(Lemming)"
-
-        String varActions = "Actions";
-        String action = "action(Action, _, _)";
-
-        String varPreconditions = "W";
-        String[] preconditions = { "isOn(Lemming, crossWalkB)", "isA(Lemming, lemming)", "isA(Car, car)", "isOn(Car, trackStreetAEAI)"};
-
-        String plan = "plan(" + desire + "," + varActions + "," + varPreconditions + "," + postCondition +")";
-
-
-        Body body3 = Body.builder().context(PlansContextService).clause(plan).
-
+    	BridgeRule rule3 = createRedTrafficlight();
+        		
     	
     	List<BridgeRule> list = new ArrayList<>();
     	list.add(rule1);
     	list.add(rule2);
     	list.add(rule3);
-    	list.add(rule4);
+//    	list.add(rule4);
     	
     	return list;
 	}
 	
+	private BridgeRule createRedTrafficlight() {
+		//plan(safe(Lemming), [action(trafficLight(), trafficLight(green), trafficLight(red))], 
+		//[isOn(Lemming, crossWalkB), isA(Lemming, lemming), isA(Car, car), isOn(Car, streetA)], 
+		//trafficLight(red)).
+		
+		Body action1 = Body.builder().context(PlansContextService.getInstance()).clause("action(Action, _, _)").build();
+		Body action1member = Body.builder().context(PlansContextService.getInstance()).clause("member(action(Action, _, _), Actions)").and(action1).build();
+		
+		Body precondition1 = Body.builder().context(this).clause("isOn(Lemming, crossWalkB)").and(action1member).build();
+		Body precondition1member = Body.builder().context(PlansContextService.getInstance()).clause("member(isOn(Lemming, crossWalkB), Preconditions)").and(precondition1).build();
+		
+		Body precondition2 = Body.builder().context(this).clause("isA(Lemming, lemming)").and(precondition1member).build();
+		Body precondition2member = Body.builder().context(PlansContextService.getInstance()).clause("member(isA(Lemming, lemming), Preconditions)").and(precondition2).build();
+		
+		Body precondition3 = Body.builder().context(this).clause("isA(Car, car)").and(precondition2member).build();
+		Body precondition3member = Body.builder().context(PlansContextService.getInstance()).clause("member(isA(Car, car), Preconditions)").and(precondition3).build();
+		
+		Body precondition4 = Body.builder().context(this).clause("isOn(Car, streetA)").and(precondition3member).build();
+		Body precondition4member = Body.builder().context(PlansContextService.getInstance()).clause("member(isOn(Car, streetA), Preconditions)").build();
+		
+		Body plan = Body.builder().context(PlansContextService.getInstance()).clause("plan(safe(Lemming), Actions, Preconditions, trafficLight(red))")
+				.and(precondition4member)
+				.build();
+		
+		
+		Head head = Head.builder().context(CommunicationContextService.getInstance()).clause("act(Action)").build();
+		
+		return BridgeRule.builder().body(plan).head(head).build();
+	}
+
 	@Override
 	public void appendFact(String fact) {
 		if(fact.startsWith("trafficLight"))
