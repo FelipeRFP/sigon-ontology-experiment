@@ -8,6 +8,8 @@ import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyStorageException;
 
 import alice.tuprolog.InvalidTheoryException;
+import alice.tuprolog.MalformedGoalException;
+import alice.tuprolog.SolveInfo;
 import br.ufsc.ine.agent.bridgerules.Body;
 import br.ufsc.ine.agent.bridgerules.BridgeRule;
 import br.ufsc.ine.agent.bridgerules.Head;
@@ -120,6 +122,14 @@ public class SemanticsContextService extends CustomContext{
       
 	}
         
+    @Override
+    public boolean verify(String fact) {
+        
+    }
+	
+	
+	
+	
 }
 	
 

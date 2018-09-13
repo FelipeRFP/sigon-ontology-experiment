@@ -400,6 +400,8 @@ public class Manager {
     	
     	nodes.entities().forEach(System.out::println);
     	nodes.entities().forEach(c -> removeAxioms(c, lemmingId));
+    	
+    	
     }
     
     protected void removeAxioms(OWLNamedIndividual location, String lemming) {
@@ -412,6 +414,21 @@ public class Manager {
     		this.man.removeAxiom(this.loadedOntology, dpa);
     	
     }
+    
+    
+    public boolean testFact(String fact) {
+    	
+    	
+    	
+    	
+    	
+    	
+    	return false;
+    }
+    
+    
+    
+    
     
     
     
